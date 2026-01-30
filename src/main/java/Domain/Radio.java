@@ -1,25 +1,34 @@
 package Domain;
 
 public class Radio {
-
     private int currentStation;
-    private int currentVolume;
+    private int volume;
+    private int stationsCount;
 
-    // ===== Радиостанции =====
+    public Radio() {
+        this.stationsCount = 10;
+    }
+
+    public Radio(int stationsCount) {
+        this.stationsCount = stationsCount;
+    }
+
+
+// ===== Радиостанции =====
 
     public int getCurrentStation() {
         return currentStation;
     }
 
     public void setCurrentStation(int station) {
-        if (station < 0 || station > 9) {
+        if (station < 0 || station >= stationsCount) {
             return;
         }
         this.currentStation = station;
     }
 
     public void next() {
-        if (currentStation == 9) {
+        if (currentStation == stationsCount - 1) {
             currentStation = 0;
         } else {
             currentStation++;
@@ -28,34 +37,35 @@ public class Radio {
 
     public void prev() {
         if (currentStation == 0) {
-            currentStation = 9;
+            currentStation = stationsCount - 1;
         } else {
             currentStation--;
         }
     }
 
-    // ===== Громкость =====
 
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
-    public void setCurrentVolume(int volume) {
-        if (volume < 0 || volume > 100) {
-            return;
-        }
-        this.currentVolume = volume;
-    }
+// ===== Громкость =====
 
     public void increaseVolume() {
-        if (currentVolume < 100) {
-            currentVolume++;
+        if (volume < 100) {
+            volume++;
         }
     }
 
     public void decreaseVolume() {
-        if (currentVolume > 0) {
-            currentVolume--;
+        if (volume > 0) {
+            volume--;
         }
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        if (volume < 0 || volume > 100) {
+            return;
+        }
+        this.volume = volume;
     }
 }
