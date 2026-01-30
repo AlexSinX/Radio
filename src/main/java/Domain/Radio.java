@@ -1,8 +1,15 @@
 package Domain;
 
+import lombok.Getter;
+
 public class Radio {
+
+    @Getter
     private int currentStation;
+
+    @Getter
     private int volume;
+
     private int stationsCount;
 
     public Radio() {
@@ -13,12 +20,7 @@ public class Radio {
         this.stationsCount = stationsCount;
     }
 
-
-// ===== Радиостанции =====
-
-    public int getCurrentStation() {
-        return currentStation;
-    }
+    // ===== Радиостанции =====
 
     public void setCurrentStation(int station) {
         if (station < 0 || station >= stationsCount) {
@@ -43,8 +45,14 @@ public class Radio {
         }
     }
 
+    // ===== Громкость =====
 
-// ===== Громкость =====
+    public void setVolume(int volume) {
+        if (volume < 0 || volume > 100) {
+            return;
+        }
+        this.volume = volume;
+    }
 
     public void increaseVolume() {
         if (volume < 100) {
@@ -56,16 +64,5 @@ public class Radio {
         if (volume > 0) {
             volume--;
         }
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        if (volume < 0 || volume > 100) {
-            return;
-        }
-        this.volume = volume;
     }
 }
